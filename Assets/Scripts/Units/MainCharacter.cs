@@ -5,6 +5,18 @@ using UnityEngine;
 using Unity.Mathematics;
 using System;
 
+public class Control
+{
+    public const KeyCode UP = KeyCode.W;
+    public const KeyCode DOWM = KeyCode.S;
+    public const KeyCode LEFT = KeyCode.A;
+    public const KeyCode RIGHT = KeyCode.D;
+
+    public const KeyCode SHOOT = KeyCode.Space;
+    public const KeyCode SKILL_1 = KeyCode.X;
+    public const KeyCode SKILL_2 = KeyCode.C;
+}
+
 public class MainCharacter : BaseCharacter
 {
     //public FloatPublisherSO changeHealthSO;
@@ -37,11 +49,11 @@ public class MainCharacter : BaseCharacter
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(Control.UP))
         {
             velocity.y = Mathf.MoveTowards(velocity.y, currentSpeed, acceleration * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(Control.DOWM))
         {
             velocity.y = Mathf.MoveTowards(velocity.y, -currentSpeed, acceleration * Time.deltaTime);
         }
@@ -50,11 +62,11 @@ public class MainCharacter : BaseCharacter
             velocity.y = Mathf.MoveTowards(velocity.y, 0, acceleration * Time.deltaTime);
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(Control.LEFT))
         {
             velocity.x = Mathf.MoveTowards(velocity.x, -currentSpeed, acceleration * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(Control.RIGHT))
         {
             velocity.x = Mathf.MoveTowards(velocity.x, currentSpeed, acceleration * Time.deltaTime);
         }
@@ -64,15 +76,15 @@ public class MainCharacter : BaseCharacter
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(Control.SHOOT))
         {
             Attack();
         }
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(Control.SKILL_1))
         {
             //chieu 1
         }
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(Control.SKILL_2))
         {
             //chieu cuoi
         }
