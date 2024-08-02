@@ -91,10 +91,10 @@ public class MainCharacter : BaseCharacter
         {
             activator.SetSkill(Skill_1);
         }
-        if (Input.GetKey(Skill_2.keyCode))
-        {
-            activator.SetSkill(Skill_2);
-        }
+        //if (Input.GetKey(Skill_2.keyCode))
+        //{
+            //activator.SetSkill(Skill_2);
+        //}
 
         //if (currentHealth > 0)
         //    sendPositionToEnemiesSO.RaiseEvent(this.transform.position);
