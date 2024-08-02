@@ -1,3 +1,4 @@
+using Assets.Scripts.Units;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,11 @@ public class SkillActivator : MonoBehaviour
 {
     // Start is called before the first frame update
     public Skill crnSkill;
-    public SpriteRenderer aimSpriteRenderer;
-
+    public AimRenderer aimRenderer;
+    private void Awake()
+    {
+        aimRenderer = GetComponent<AimRenderer>();
+    }
     public void SetSkill (Skill skill)
     {
         if (crnSkill != null)
@@ -27,31 +31,36 @@ public class SkillActivator : MonoBehaviour
             switch (crnSkill.GetState())
             {
                 case Skill.SkillState.ready:
-                    aimSpriteRenderer.gameObject.SetActive(false);
                     if (Input.GetKey(crnSkill.keyCode))
                     {
                             crnSkill.Cast(gameObject);
                             crnSkill.SetCasting();
-                        aimSpriteRenderer.gameObject.SetActive(true);
                     }
                     break;
                 case Skill.SkillState.casting:
-                        crnSkill.Cast(gameObject);
+                    crnSkill.Cast(gameObject);
                     if (Input.GetKeyUp(crnSkill.keyCode))
                     {
                         if (!crnSkill.isCasted)
-                                crnSkill.SetReady();
+                        {
+                            crnSkill.SetReady();
+                            aimRenderer.DisableAll();
+                            return;
+                        }    
+                                
                         else crnSkill.SetActive();
                     }
+                    crnSkill.UpdateAimSprite(aimRenderer);
                     break;
                 case Skill.SkillState.active:
-                        crnSkill.Activate(gameObject);
+                    crnSkill.Activate(gameObject);
+                    crnSkill.UpdateAimSprite(aimRenderer);
                     break;
                 case Skill.SkillState.disabled:
-                    aimSpriteRenderer.gameObject.SetActive(false);
-                    break;
+                    aimRenderer.DisableAll();
+                    return;
             }
-                crnSkill.UpdateAimSprite(aimSpriteRenderer);
+            
 
         }
 

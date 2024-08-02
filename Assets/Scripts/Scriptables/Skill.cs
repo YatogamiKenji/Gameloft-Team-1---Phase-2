@@ -1,10 +1,10 @@
+using Assets.Scripts.Units;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Skill : ScriptableObject
 {
-    // Start is called before the first frame update
     public new string name;
     public int id;
     public KeyCode keyCode;
@@ -42,7 +42,7 @@ public abstract class Skill : ScriptableObject
         return keyCode;
     }
 
-    public virtual void UpdateAimSprite(SpriteRenderer aimSpriteRenderer) { }
+    public virtual void UpdateAimSprite(AimRenderer aimRenderer) { }
     public abstract void Cast(GameObject player = null);
     public abstract void Activate(GameObject player = null);
 }

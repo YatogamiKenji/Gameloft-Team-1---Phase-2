@@ -12,7 +12,7 @@ public class Control
     public const KeyCode LEFT = KeyCode.A;
     public const KeyCode RIGHT = KeyCode.D;
 
-    public const KeyCode SHOOT = KeyCode.Space;
+    public const KeyCode SHOOT = KeyCode.Mouse0;
     public const KeyCode SKILL_1 = KeyCode.X;
     public const KeyCode SKILL_2 = KeyCode.C;
 }
@@ -38,7 +38,7 @@ public class MainCharacter : BaseCharacter
 
     public SkillActivator activator;
     public Skill Skill_1;
-   // public Skill Skill_2;
+    public Skill Skill_2;
 
     public int Skill_1_Unlock;
     public int Skill_2_Unlock;
@@ -91,10 +91,10 @@ public class MainCharacter : BaseCharacter
         {
             activator.SetSkill(Skill_1);
         }
-        //if (Input.GetKey(Skill_2.keyCode))
-        //{
-            //activator.SetSkill(Skill_2);
-        //}
+        if (Input.GetKey(Skill_2.keyCode))
+        {
+            activator.SetSkill(Skill_2);
+        }
 
         //if (currentHealth > 0)
         //    sendPositionToEnemiesSO.RaiseEvent(this.transform.position);
@@ -157,7 +157,7 @@ public class MainCharacter : BaseCharacter
         if (currentHealth <= Skill_2_Unlock)
         {
             Skill_1.SetDisabled();
-          //  Skill_2.SetReady();
+            Skill_2.SetReady();
         }
         else if (currentHealth <= Skill_1_Unlock)
         {
@@ -166,7 +166,7 @@ public class MainCharacter : BaseCharacter
         else
         {
             Skill_1.SetDisabled();
-           // Skill_2.SetDisabled();
+            Skill_2.SetDisabled();
         }    
         //changeHealthSO.RaiseEvent(currentHealth);
     }

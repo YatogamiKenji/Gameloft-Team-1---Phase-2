@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ef211ff6c99a548812778aa1d62f68, type: 3}
   m_Name: SlimeThach
   m_EditorClassIdentifier: 
-  name: 
+  name: SlimeThach
   id: 0
   keyCode: 120
   isCasted: 1
@@ -20,7 +20,8 @@ MonoBehaviour:
   castTime: 0
   state: 0
   radius: 2
-  aimPos: {x: 3.2311075, y: 0.25962475, z: 0}
+  radiusMultipler: 0.5
+  aimPos: {x: 7.764507, y: 1.9731205, z: 0}
   aimSpeed: 3
   skillAim: {fileID: 21300000, guid: 33ef9d7db5efbe444b0f2a1ced1f78e4, type: 3}
   remainingHealth: 1

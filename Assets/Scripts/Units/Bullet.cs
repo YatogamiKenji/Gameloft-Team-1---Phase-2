@@ -21,6 +21,10 @@ public class Bullet : MonoBehaviour
         col = rb.GetComponent<Collider2D>();
     }
 
+    public bool IsCollectable
+    {
+        get { return isCollectable; }
+    }
     private void Update()
     {
         if (!isCollectable)

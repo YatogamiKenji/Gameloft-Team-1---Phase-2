@@ -25,7 +25,10 @@ namespace Assets.Scripts.Units
             currentHealth -= health;
             Debug.Log(this.name + ": " + health);
         }
-
+        public void OnCollisionEnter2D(Collision2D collision)
+        {
+            
+        }
         public override void Die()
         {
             throw new NotImplementedException();

@@ -12,6 +12,7 @@ namespace Assets.Scripts.Scriptables
     [CreateAssetMenu]
     public class SlimeThachSkill : Skill
     {
+        //Press X to cast, IJKL to move the aimer
         public float radius = 0.5f;
         public float radiusMultipler = 0.5f;
         public Vector3 aimPos;
@@ -19,19 +20,22 @@ namespace Assets.Scripts.Scriptables
         public Sprite skillAim;
         public int remainingHealth;
 
-        public override void UpdateAimSprite(SpriteRenderer aimSpriteRenderer)
+        //Update the SkillAimVisualize
+        public override void UpdateAimSprite(AimRenderer aimRenderer)
         {
-            aimSpriteRenderer.sprite = skillAim;
+            aimRenderer.AimSpriteRenderer.enabled = true;
             // Set the position of the sprite to the caster position
-            aimSpriteRenderer.transform.position = aimPos;
+            aimRenderer.AimSpriteRenderer.sprite = skillAim;
+            aimRenderer.AimSpriteRenderer.transform.position = aimPos;
 
             // Scale the sprite based on the desired radius
-            float scale = radius * 2.0f / aimSpriteRenderer.sprite.bounds.size.x;
-            aimSpriteRenderer.transform.localScale = new Vector3(scale, scale, 1);
+            float scale = radius * 2.0f / aimRenderer.AimSpriteRenderer.sprite.bounds.size.x;
+            aimRenderer.AimSpriteRenderer.transform.localScale = new Vector3(scale, scale, 1);
         }
 
         public override void Activate(GameObject Caster)
         {
+            //Use CircleCast to know if any object is within the skill range
             RaycastHit2D [] hit;
 
             Vector3 p1 = aimPos;
@@ -43,23 +47,27 @@ namespace Assets.Scripts.Scriptables
                 for (int i = 0; i < hit.Length; i++)
                 {
                     Debug.Log("Hit: " + hit[i].collider.name);
+                    //Change enemy's health
                     if (hit[i].collider.TryGetComponent<SkillTestEnemy>(out SkillTestEnemy enemy))
                     {
                         enemy.ChangeHealth(dmg);
-                        // collect event
                     }
                 }
                 
             }
+
+            //Change Character Health
             if (Caster.GetComponent<MainCharacter>() != null)
             {
                 MainCharacter main = Caster.GetComponent<MainCharacter>();
                 main.ChangeHealth(-(main.currentHealth - remainingHealth));
             }
+            SetDisabled(); //Disable the skill on complete
         }
 
         public override void Cast(GameObject Caster)
         {
+            //Moving the aim Circle
             isCasted = true;
             
             if (state == SkillState.ready)
