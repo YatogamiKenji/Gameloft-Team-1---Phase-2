@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ef211ff6c99a548812778aa1d62f68, type: 3}
+  m_Name: SlimeThach
+  m_EditorClassIdentifier: 
+  name: 
+  id: 0
+  keyCode: 120
+  isCasted: 1
+  dmg: 2
+  castTime: 0
+  state: 0
+  radius: 2
+  aimPos: {x: 3.2311075, y: 0.25962475, z: 0}
+  aimSpeed: 3
+  skillAim: {fileID: 21300000, guid: 33ef9d7db5efbe444b0f2a1ced1f78e4, type: 3}
+  remainingHealth: 1
