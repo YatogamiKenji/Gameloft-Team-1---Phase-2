@@ -48,7 +48,7 @@ public class ShootProjectiles : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Bullet bullet = bulletPool.Get();
-
+            bullet.transform.position = this.transform.position;
             Vector2 direction = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2) transform.position;
             bullet.Shoot(direction, false);
         }
